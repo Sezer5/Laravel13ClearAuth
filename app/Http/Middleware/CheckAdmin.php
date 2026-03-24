@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckAdmin
@@ -13,8 +14,21 @@ class CheckAdmin
      *
      * @param  Closure(Request): (Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next,...$roles)
     {
-        return $next($request);
+        if(!Auth::check()){
+            return redirect('login');
+        }
+        $user=Auth::user();
+
+        //Kullanıcıda istenen rollerden en az bir tanesi var mı?
+
+        foreach($roles as $role){
+            if($user->hasRole($role)){
+                return $next($request);
+            }
+        }
+
+        abort(403,'You dont have a permission for this process');
     }
 }

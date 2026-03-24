@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminAuthRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -13,6 +15,7 @@ class AdminController extends Controller
     public function index()
     {
         //
+        
     }
 
     /**
@@ -61,5 +64,25 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function login(){
+        return view('admin.login');
+    }
+
+    public function auth(AdminAuthRequest $request){
+        if($request->validated()){
+            $credentials = $request->validated();
+            if(Auth::attempt($credentials)){
+                $request->session()->regenerate();
+            }
+            if(Auth::user()->hasRole('admin')){
+                return redirect()->route('admin.index');
+            }
+            Auth::logout();
+            return redirect()->route('admin.login')->with([
+                'error' => 'These credentials dont match to our records'
+            ]);
+        }
     }
 }
