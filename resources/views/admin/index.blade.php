@@ -6,7 +6,10 @@
 
 @section('content')
         <main class="content">
-            <h3>İstatistikler</h3>
-            <p>Buraya grafikler, tablolar veya formlar gelecek.</p>
+            <div class="card card-body">
+                <h3>İstatistikler</h3>
+                <p>Buraya grafikler, tablolar veya formlar gelecek.</p>
+            </div>
+            
         </main>
 @endsection
