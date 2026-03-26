@@ -31,15 +31,21 @@
         <div class="card p-4">
             <div class="card-body">
                 <h3 class="text-center mb-4">Giriş Yap</h3>
-                <form>
+                @session('error')
+                        <div class="alet alert-danger my-2">
+                            {{session('error')}}
+                        </div>
+                    @endsession
+                <form action="{{route('admin.auth')}}" method="POST">
+                    @csrf
                     <div class="mb-3">
                         <label for="email" class="form-label">E-posta Adresi</label>
-                        <input type="email" class="form-control" id="email" placeholder="ornek@mail.com" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="ornek@mail.com" required>
                     </div>
                     
                     <div class="mb-3">
                         <label for="password" class="form-label">Şifre</label>
-                        <input type="password" class="form-control" id="password" placeholder="******" required>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="******" required>
                     </div>                    
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>

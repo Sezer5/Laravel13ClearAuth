@@ -6,7 +6,10 @@
             <a href="#">Profilim</a>
             <a href="#">Ayarlar</a>
             <hr>
-            <a href="#" class="logout">Çıkış Yap</a>
+            <a href="#" onclick="document.getElementById('adminLogoutForm').submit()" class="logout">Çıkış Yap</a>
+            <form id="adminLogoutForm" action="{{route('admin.logout')}}" method="POST">
+                @csrf
+            </form>
         </div>
     </div>
 </header>

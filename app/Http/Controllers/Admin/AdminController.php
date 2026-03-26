@@ -77,12 +77,17 @@ class AdminController extends Controller
                 $request->session()->regenerate();
             }
             if(Auth::user()->hasRole('admin')){
-                return redirect()->route('admin.index');
+                return redirect()->route('admin.home');
             }
             Auth::logout();
             return redirect()->route('admin.login')->with([
                 'error' => 'These credentials dont match to our records'
             ]);
         }
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('admin.login');
     }
 }
