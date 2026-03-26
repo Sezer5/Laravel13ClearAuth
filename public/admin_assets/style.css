@@ -64,11 +64,11 @@
 
 .footer {
     grid-area: footer;
-    background-color: #ecf0f1;
+    background-color: #c6c8c9;
     text-align: center;
     line-height: 50px;
     font-size: 0.9rem;
-    color: #7f8c8d;
+    color: #494c4d;
 }
 
 /* Dropdown Konteynırı */

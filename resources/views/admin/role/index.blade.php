@@ -6,7 +6,7 @@
 
 @section('content')
         <main class="content">
-            <div class="card card-body col-md-6">
+            <div class="card card-body col-md-6 shadow">
                 <h3>Roles</h3>
                 <table class="table table-responsive table-bordered">
                     <thead>
